@@ -1,7 +1,6 @@
 #pragma once
 
 #include "vector.hpp"
-#include <algorithm>
 #include <cstddef>
 #include <iostream>
 #include <ostream>
@@ -63,6 +62,23 @@ public:
         for (std::size_t k = 0; k < cols(); ++k) {
           result[i][j] += _rows[i][k] * other._rows[k][j];
         }
+      }
+    }
+
+    return Matrix(std::move(result));
+  }
+
+  Matrix operator-(const Matrix &other) const {
+    if (rows() * cols() != other.rows() * other.cols()) {
+      throw std::runtime_error("matrix/matrix dimension mismatch");
+    }
+
+    std::vector<std::vector<value_type>> result(
+        rows(), std::vector<value_type>(cols(), value_type{0}));
+
+    for (std::size_t i = 0; i < rows(); ++i) {
+      for (std::size_t j = 0; j < cols(); ++j) {
+        result[i][j] = _rows[i][j] - other._rows[i][j];
       }
     }
 
