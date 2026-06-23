@@ -100,11 +100,4 @@ std::vector<Vector> gram_schmidt(const std::vector<Vector> &vectors) {
 }
 
 int main() {
-  Vector v1({1, 0, 0});
-  Vector v2({1, 1, 0});
-  Vector v3({1, 1, 1});
-
-  Matrix I = Matrix::identity(3);
-
-  std::cout << "I = " << I << '\n';
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vector.hpp"
+#include <cmath>
 #include <cstddef>
 #include <cstdlib>
 #include <iostream>
@@ -180,6 +181,29 @@ public:
 
     return Matrix({{_rows[1][1] / det, -_rows[0][1] / det},
                    {_rows[1][0] / det, -_rows[0][0] / det}});
+  }
+
+  static Matrix rotation_2d(const value_type &theta) {
+    value_type c = std::cos(theta);
+    value_type s = std::sin(theta);
+
+    return Matrix({{c, -s}, {s, -c}});
+  }
+
+  static Matrix scaling_2d(const value_type &sx, const value_type &sy) {
+    return Matrix({{sx, 0}, {0, sy}});
+  }
+
+  static Matrix shearing_2d(const value_type &kx, const value_type &ky) {
+    return Matrix({{1, kx}, {ky, 1}});
+  }
+
+  static Matrix reflection_x() {
+    return Matrix({{1, 0}, {0, -1}});
+  }
+
+  static Matrix reflection_y() {
+    return Matrix({{-1, 0}, {0, 1}});
   }
 
   static Matrix identity(std::size_t n) {
