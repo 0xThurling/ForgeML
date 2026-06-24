@@ -1,5 +1,6 @@
 #include "core/matrix.hpp"
 #include "core/vector.hpp"
+#include "utils/assertions.hpp"
 #include <cmath>
 #include <stdexcept>
 #include <vector>
@@ -100,4 +101,8 @@ std::vector<Vector> gram_schmidt(const std::vector<Vector> &vectors) {
 }
 
 int main() {
+    Vector v1({1, 0});
+    Vector v2({0, 1});
+
+    ML_ASSERT(v1.cosine_similarity(v2) == 1, "Not similar vectors");
 }
